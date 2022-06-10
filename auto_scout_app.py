@@ -3,7 +3,13 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 
-st.title("LET US CALCULATE YOUR CAR'S PRICE")
+#st.title("LET US CALCULATE YOUR CAR'S PRICE")
+html_temp = """
+<div style="background-color:tomato;padding:1.5px">
+<h1 style="color:white;text-align:center;">LET US CALCULATE YOUR CAR'S PRICE </h1>
+</div><br>"""
+st.markdown(html_temp,unsafe_allow_html=True)
+
 img = Image.open("arac_resmi.jpg")
 st.image(img, caption="Calculating in the most accurate way", width=300)
 st.sidebar.markdown("### Please enter your vehicle's informations")
@@ -54,6 +60,12 @@ df=pd.DataFrame(car)
 
 cat = df.select_dtypes("object").columns
 df[cat] = enc.transform(df[cat])
+
+html_temp2 = """
+<div style="background-color:#5D8679;padding:1.5px">
+<h1 style="color:white;text-align:center;">Your Car's Price </h1>
+</div><br>"""
+st.markdown(html_temp2,unsafe_allow_html=True)
 
 c1, c2, c3, c4, c5, c6 ,c7 ,c8 ,c9 = st.columns(9) 
 if c5.button('Predict'):
